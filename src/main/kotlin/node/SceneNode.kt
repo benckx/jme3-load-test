@@ -29,7 +29,7 @@ class SceneNode(private val sizeX: Int,
     }
 
     override fun simpleUpdate(tpf: Float) {
-        boxNodes.forEach { it.simpleUpdate(tpf) }
+        boxNodes.forEach { node -> node.simpleUpdate(tpf) }
     }
 
     private fun makeBoxNodes(): List<BoxNode> {
@@ -50,8 +50,11 @@ class SceneNode(private val sizeX: Int,
 
         fun randomUnusedPosition(): Vector2f {
             while (true) {
-                val position = randomPosition()
-                if (!used.contains(position)) {
+                val position: Vector2f = randomPosition()
+                val alreadyExists: Vector2f? = used.find { it.x.toInt() == position.x.toInt() && it.y.toInt() == position.y.toInt() }
+
+                @Suppress("FoldInitializerAndIfToElvis")
+                if (alreadyExists == null) {
                     return position
                 }
             }
