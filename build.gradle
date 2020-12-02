@@ -32,4 +32,7 @@ dependencies {
     compile "com.github.benckx.chimp-utils:chimp-utils-basics:$chimpUtilsVersion"
     compile "com.github.benckx.chimp-utils:chimp-utils-jme3:$chimpUtilsVersion"
     compile "com.github.benckx:ouistiti:$ouistitiVersion"
+
+    // other libs
+    compile 'org.apache.commons:commons-lang3:3.11'
 }
