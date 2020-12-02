@@ -1,0 +1,35 @@
+plugins {
+    id "com.github.ben-manes.versions" version "0.36.0"
+    id "org.jetbrains.kotlin.jvm" version "$kotlinVersion"
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
+def jmeVersion = "3.3.2-stable"
+def chimpUtilsVersion = "1.4"
+def ouistitiVersion = "1.2"
+
+apply plugin: 'kotlin'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // jme3
+    compile "org.jmonkeyengine:jme3-core:$jmeVersion"
+    compile "org.jmonkeyengine:jme3-desktop:$jmeVersion"
+    compile "org.jmonkeyengine:jme3-lwjgl:$jmeVersion"
+    compile "org.jmonkeyengine:jme3-blender:$jmeVersion"
+    compile "org.jmonkeyengine:jme3-plugins:$jmeVersion"
+    compile "org.jmonkeyengine:jme3-jogg:$jmeVersion"
+
+    // jme3 helper libs
+    compile "com.github.benckx.chimp-utils:chimp-utils-basics:$chimpUtilsVersion"
+    compile "com.github.benckx.chimp-utils:chimp-utils-jme3:$chimpUtilsVersion"
+    compile "com.github.benckx:ouistiti:$ouistitiVersion"
+}
