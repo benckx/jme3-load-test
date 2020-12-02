@@ -29,10 +29,10 @@ class SceneNode(private val sizeX: Int,
     }
 
     override fun simpleUpdate(tpf: Float) {
-        boxNodes.forEach { it.rotate(0f, 0f, tpf * .4f) }
+        boxNodes.forEach { it.simpleUpdate(tpf) }
     }
 
-    private fun makeBoxNodes(): List<Node> {
+    private fun makeBoxNodes(): List<BoxNode> {
         val used = mutableSetOf<Vector2f>()
 
         fun randomPosition(): Vector2f {
@@ -57,7 +57,7 @@ class SceneNode(private val sizeX: Int,
             }
         }
 
-        val boxNodes = mutableListOf<Node>()
+        val boxNodes = mutableListOf<BoxNode>()
 
         repeat(nbrOfStacks) {
             val position = randomUnusedPosition()
