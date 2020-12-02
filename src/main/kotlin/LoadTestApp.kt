@@ -11,6 +11,7 @@ import node.SceneNode
 class LoadTestApp : SimpleApplication() {
 
     private lateinit var cameraManager: CameraManager
+    private lateinit var sceneNode: SceneNode
 
     override fun simpleInitApp() {
         // init chimp-utils lib for materials
@@ -23,12 +24,14 @@ class LoadTestApp : SimpleApplication() {
         // build scene
         addLighting()
 
+        sceneNode = SceneNode(sizeX = 40, sizeY = 30, nbrOfStacks = 700)
         viewPort.backgroundColor = ColorRGBA("#1c3064")
-        rootNode.attachChild(SceneNode(sizeX = 30, sizeY = 20, nbrOfStacks = 350))
+        rootNode.attachChild(sceneNode)
     }
 
     override fun simpleUpdate(tpf: Float) {
         cameraManager.simpleUpdate(tpf)
+        sceneNode.simpleUpdate(tpf)
     }
 
     private fun addLighting() {

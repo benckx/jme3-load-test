@@ -2,7 +2,7 @@ import com.jme3.system.AppSettings
 
 fun main() {
     val settings = AppSettings(true)
-    settings.isFullscreen = false
+    settings.isFullscreen = true
     settings.setResolution(1920, 1080)
     settings.samples = 16
     settings.title = "Load Test"

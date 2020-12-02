@@ -1,6 +1,7 @@
 package node
 
 import be.encelade.chimp.material.UnshadedMaterial
+import be.encelade.chimp.tpf.TpfReceiver
 import be.encelade.chimp.utils.ColorHelperUtils.ColorRGBA
 import be.encelade.chimp.utils.NodeHelperUtils.attachChildren
 import com.jme3.math.ColorRGBA.Blue
@@ -16,16 +17,22 @@ import org.apache.commons.lang3.RandomUtils.nextInt
 
 class SceneNode(private val sizeX: Int,
                 private val sizeY: Int,
-                private val nbrOfStacks: Int) : Node("MY_SCENE") {
+                private val nbrOfStacks: Int) : Node("MY_SCENE"), TpfReceiver {
+
+    private val boxNodes = makeBoxNodes()
 
     init {
         if (nbrOfStacks > sizeX * sizeY) throw IllegalArgumentException()
 
         attachChildren(makeFloor(), makeGrid())
-        attachChildren(makeStackNodes())
+        attachChildren(boxNodes)
     }
 
-    private fun makeStackNodes(): List<Node> {
+    override fun simpleUpdate(tpf: Float) {
+        boxNodes.forEach { it.rotate(0f, 0f, tpf * .4f) }
+    }
+
+    private fun makeBoxNodes(): List<Node> {
         val used = mutableSetOf<Vector2f>()
 
         fun randomPosition(): Vector2f {
@@ -35,7 +42,10 @@ class SceneNode(private val sizeX: Int,
             val signX = if (nextBoolean()) 1 else -1
             val signY = if (nextBoolean()) 1 else -1
 
-            return Vector2f(x * signX, y * signY)
+            val borderX = if (nextBoolean()) 1 else 0
+            val borderY = if (nextBoolean()) 1 else 0
+
+            return Vector2f(x * signX + borderX, y * signY + borderY)
         }
 
         fun randomUnusedPosition(): Vector2f {
@@ -47,19 +57,19 @@ class SceneNode(private val sizeX: Int,
             }
         }
 
-        val nodes = mutableListOf<Node>()
+        val boxNodes = mutableListOf<Node>()
 
         repeat(nbrOfStacks) {
             val position = randomUnusedPosition()
-            val stackHeight = nextInt(1, 4)
+            val stackHeight = nextInt(1, 8)
             repeat(stackHeight) { height ->
-                nodes += BoxNode(position, height)
+                boxNodes += BoxNode(position, height)
             }
         }
 
-        println("added ${nodes.size} boxes")
+        println("added ${boxNodes.size} boxes")
 
-        return nodes
+        return boxNodes
     }
 
     private fun makeFloor(): Geometry {

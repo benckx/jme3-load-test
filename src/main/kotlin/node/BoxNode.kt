@@ -15,7 +15,7 @@ class BoxNode(position: Vector2f, level: Int) : Node("BOX_${counter++}") {
         geometry.material = material
         geometry.shadowMode = RenderQueue.ShadowMode.CastAndReceive
 
-        val z = .5f * HEIGHT + (level * HEIGHT * .1f)
+        val z = .5f * HEIGHT + (level * HEIGHT * 1.10f)
         geometry.move(position.x - .5f, position.y - .5f, z)
 
         attachChild(geometry)
