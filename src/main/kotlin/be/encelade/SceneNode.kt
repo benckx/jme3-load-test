@@ -11,7 +11,8 @@ import com.jme3.scene.debug.Grid
 import com.jme3.scene.shape.Box
 
 class SceneNode(private val sizeX: Int = 10,
-                private val sizeY: Int = 8) : Node("MY_SCENE") {
+                private val sizeY: Int = 8,
+                private val nbrOfStacks: Int = 200) : Node("MY_SCENE") {
 
     init {
         attachChildren(makeFloor(), makeGrid())
