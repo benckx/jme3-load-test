@@ -1,0 +1,21 @@
+[versions]
+kotlin = "2.4.20"
+benManesVersions = "0.64.0"
+jme = "3.9.0-stable"
+ouistiti = "2.2.2"
+chimpUtils = "1.8.0"
+commonsLang3 = "3.11"
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+jme-core = { module = "org.jmonkeyengine:jme3-core", version.ref = "jme" }
+jme-desktop = { module = "org.jmonkeyengine:jme3-desktop", version.ref = "jme" }
+jme-lwjgl3 = { module = "org.jmonkeyengine:jme3-lwjgl3", version.ref = "jme" }
+ouistiti = { module = "com.github.benckx:ouistiti", version.ref = "ouistiti" }
+chimp-utils-basics = { module = "com.github.benckx.chimp-utils:chimp-utils-basics", version.ref = "chimpUtils" }
+chimp-utils-jme3 = { module = "com.github.benckx.chimp-utils:chimp-utils-jme3", version.ref = "chimpUtils" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commonsLang3" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "benManesVersions" }
